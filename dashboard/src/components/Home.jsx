@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -8,55 +6,62 @@ import TopBar from "./TopBar";
 import Dashboard from "./Dashboard";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [, , removeCookie] = useCookies(["token"]);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const verifyUser = async () => {
+      // 1️⃣ Try URL token first (after login)
       const params = new URLSearchParams(window.location.search);
-      const token = params.get("token");
+      let token = params.get("token");
+
+      // 2️⃣ Fallback to stored token (refresh case)
       if (!token) {
-        // no token → redirect to frontend login
+        token = localStorage.getItem("dashboard_token");
+      }
+
+      // 3️⃣ No token → redirect to frontend login
+      if (!token) {
         window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
         return;
       }
 
-      // store token safely (temporary solution)
+      // 4️⃣ Save token (safe)
       localStorage.setItem("dashboard_token", token);
 
-      // set axios header
+      // 5️⃣ Attach token to axios
       axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-      // OPTIONAL: clean URL (remove token from address bar)
+      // 6️⃣ Clean URL
       window.history.replaceState({}, document.title, "/dashboard");
 
       try {
         const res = await axios.get(
           `${import.meta.env.VITE_SERVER_URL}/verify`,
-          {
-            withCredentials: true,
-          },
         );
 
         setUserData(res.data.user);
 
-        const hasWelcomed = sessionStorage.getItem("welcomed");
-
-        if (!hasWelcomed) {
+        // Welcome toast only once per session
+        if (!sessionStorage.getItem("welcomed")) {
           toast(`Welcome ${res.data.user.username}`, {
             position: "bottom-right",
           });
           sessionStorage.setItem("welcomed", "true");
         }
-      } catch {
-        removeCookie("token");
+      } catch (err) {
+        // ❌ Token invalid
+        localStorage.removeItem("dashboard_token");
+        delete axios.defaults.headers.common.Authorization;
+
         window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
       }
     };
 
     verifyUser();
-  }, [removeCookie]);
+  }, []);
+
+  // Optional loading state
+  if (!userData) return null;
 
   return (
     <>
