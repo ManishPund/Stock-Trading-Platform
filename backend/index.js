@@ -50,6 +50,12 @@ app.post("/newOrder", async (req, res) => {
 });
 
 app.use("/", authRoute);
+app.get("/", (req, res) => {
+  res.send({
+    activeStatus: true,
+    error: false,
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`App Started on ${PORT}`);
