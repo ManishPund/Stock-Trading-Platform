@@ -23,6 +23,7 @@ app.use(
 
 // 🔹 CONNECT DB FIRST
 mongoose
+  .set("bufferCommands", false)
   .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("MongoDB connected");
