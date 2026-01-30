@@ -14,6 +14,23 @@ const Home = () => {
 
   useEffect(() => {
     const verifyUser = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+      if (!token) {
+        // no token → redirect to frontend login
+        window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
+        return;
+      }
+
+      // store token safely (temporary solution)
+      localStorage.setItem("dashboard_token", token);
+
+      // set axios header
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+      // OPTIONAL: clean URL (remove token from address bar)
+      window.history.replaceState({}, document.title, "/dashboard");
+
       try {
         const res = await axios.get(
           `${import.meta.env.VITE_SERVER_URL}/verify`,

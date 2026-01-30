@@ -39,15 +39,14 @@ const Login = () => {
         {
           ...inputValue,
         },
-        { withCredentials: true },
       );
       console.log(data);
-      const { success, message } = data;
+      const { success, message, token } = data;
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
           window.open(
-            `${import.meta.env.VITE_DASHBOARD_URL}/dashboard`,
+            `${import.meta.env.VITE_DASHBOARD_URL}/dashboard?token=${token}`,
             "_blank",
             "noopener,noreferrer",
           );
