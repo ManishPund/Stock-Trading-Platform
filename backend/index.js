@@ -13,6 +13,12 @@ const PORT = process.env.PORT || 8080;
 const dbUrl = process.env.MONGO_URL;
 
 const app = express();
+
+mongoose
+  .connect(dbUrl)
+  .then(() => console.log("DB Connected"))
+  .catch((err) => console.error(err));
+
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
@@ -59,12 +65,4 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`App Started on ${PORT}`);
-  mongoose
-    .connect(dbUrl)
-    .then(() => {
-      console.log("DB Connected");
-    })
-    .catch((err) => {
-      console.log(err.errorResponse.errmsg);
-    });
 });
