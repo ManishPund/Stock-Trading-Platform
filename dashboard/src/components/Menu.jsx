@@ -19,6 +19,7 @@ const Menu = ({ userData }) => {
         withCredentials: true,
       });
       sessionStorage.clear();
+      localStorage.removeItem("dashboard_token");
       window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
     } catch (err) {
       console.error(err, "Logout failed");

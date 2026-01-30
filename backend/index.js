@@ -14,17 +14,22 @@ const dbUrl = process.env.MONGO_URL;
 
 const app = express();
 
-mongoose
-  .connect(dbUrl)
-  .then(() => console.log("DB Connected"))
-  .catch((err) => console.error(err));
-
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
     credentials: true,
   }),
 );
+
+// 🔹 CONNECT DB FIRST
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+  });
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser());
