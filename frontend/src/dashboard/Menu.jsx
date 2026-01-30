@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Menu = ({ userData }) => {
+  const navigate = useNavigate();
   const [selectedMenu, setSelectedMenu] = useState();
   const [isProfileDropdownOpen, setIsProfileDropdownOp] = useState(false);
 
@@ -19,8 +20,7 @@ const Menu = ({ userData }) => {
         withCredentials: true,
       });
       sessionStorage.clear();
-      localStorage.removeItem("dashboard_token");
-      window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
+      navigate("/login");
     } catch (err) {
       console.error(err, "Logout failed");
     }
@@ -31,7 +31,7 @@ const Menu = ({ userData }) => {
 
   return (
     <div className="menu-container">
-      <img src="/logo.png" style={{ width: "50px" }} />
+      <img src="/media/images/dashboard-logo.png" style={{ width: "50px" }} />
       <div className="menus">
         <ul>
           <li>
@@ -106,10 +106,10 @@ const Menu = ({ userData }) => {
         <div className="profile-wrapper">
           <div className="profile" onClick={handProfileClick}>
             <div className="avatar">
-              {userData.firstName?.charAt(0).toUpperCase()}
-              {userData.lastName?.charAt(0).toUpperCase()}
+              {userData?.firstName?.charAt(0).toUpperCase()}
+              {userData?.lastName?.charAt(0).toUpperCase()}
             </div>
-            <p className="username">{userData.username}</p>
+            <p className="username">{userData?.username}</p>
           </div>
 
           {isProfileDropdownOpen && (

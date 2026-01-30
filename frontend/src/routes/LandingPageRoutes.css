@@ -1,0 +1,26 @@
+* {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-brand-logo {
+  height: 18px;
+  width: auto;
+}
+
+footer {
+  background-color: #fbfbfb;
+}
+
+.container {
+  max-width: 1140px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.accordion-item:hover {
+  transform: scale(1.05);
+}

@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-
-import GeneralContext from "./GeneralContext";
-
 import "./BuyActionWindow.css";
+import GeneralContext from "./GeneralContext";
 
 const BuyActionWindow = ({ uid, price }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
@@ -27,9 +25,9 @@ const BuyActionWindow = ({ uid, price }) => {
   };
 
   return (
-    <div className="container" id="buy-window" draggable="true">
+    <div className="windowContainer" id="buy-window" draggable="true">
       <div className="regular-order">
-        <div className="inputs">
+        <div className="windowInputs">
           <fieldset>
             <legend>Qty.</legend>
             <input
@@ -54,13 +52,17 @@ const BuyActionWindow = ({ uid, price }) => {
         </div>
       </div>
 
-      <div className="buttons">
+      <div className="windowButtons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>
+          <Link className="windowBtn btn-blue" onClick={handleBuyClick}>
             Buy
           </Link>
-          <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
+          <Link
+            to=""
+            className="windowBtn btn-grey"
+            onClick={handleCancelClick}
+          >
             Cancel
           </Link>
         </div>

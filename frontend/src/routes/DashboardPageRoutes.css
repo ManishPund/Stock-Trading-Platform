@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -272,6 +276,7 @@ code {
 
 .menus ul {
   list-style-type: none;
+  margin-block-end: 0;
 }
 
 .menus li {

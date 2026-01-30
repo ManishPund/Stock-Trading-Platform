@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Tooltip, Grow } from "@mui/material";
-import { watchlist } from "../data/data";
+import { watchlist } from "../../../frontend/src/dashboard/data/data";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import BarChartIcon from "@mui/icons-material/BarChart";

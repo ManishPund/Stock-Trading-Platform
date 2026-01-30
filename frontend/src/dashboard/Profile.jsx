@@ -8,8 +8,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Profile = ({ userData }) => {
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       await axios.post(
@@ -17,7 +19,7 @@ const Profile = ({ userData }) => {
         {},
         { withCredentials: true },
       );
-      window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
+      navigate("/login");
     } catch (err) {
       console.error("Logout failed");
     }

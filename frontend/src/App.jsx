@@ -1,31 +1,17 @@
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./landing_page/home/HomePage";
-import SignUp from "./landing_page/signup/SignUp";
-import Login from "./landing_page/signup/Login";
-import AboutPage from "./landing_page/about/AboutPage";
-import ProductPage from "./landing_page/products/ProductPage";
-import PricingPage from "./landing_page/pricing/PricingPage";
-import SupportPage from "./landing_page/support/SupportPage";
-import Navbar from "./landing_page/Navbar";
-import Footer from "./landing_page/Footer";
+import LandingPageRoutes from "./routes/LandingPageRoutes";
+import DashboardPageRoutes from "./routes/DashboardPageRoutes";
 import PageNotFound from "./landing_page/PageNotFound";
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/about" element={<AboutPage />}></Route>
-        <Route path="/product" element={<ProductPage />}></Route>
-        <Route path="/pricing" element={<PricingPage />}></Route>
-        <Route path="/support" element={<SupportPage />}></Route>
-        <Route path="*" element={<PageNotFound />}></Route>
+        <Route path="/*" element={<LandingPageRoutes />} />
+        <Route path="/dashboard/*" element={<DashboardPageRoutes />} />
+        {/* 404 */}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

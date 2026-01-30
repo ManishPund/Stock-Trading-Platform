@@ -13,12 +13,15 @@ module.exports.Signup = async (req, res, next) => {
       username,
       createdAt,
     } = req.body;
+
     const existingUser = await UserModel.findOne({
       $or: [{ email }, { username }, { mobileNum }],
     });
+
     if (existingUser) {
       return res.json({ message: "User already exists" });
     }
+
     const user = await UserModel.create({
       firstName,
       lastName,
@@ -28,11 +31,14 @@ module.exports.Signup = async (req, res, next) => {
       username,
       createdAt,
     });
+
     const token = createSecretToken(user._id);
+
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
     });
+    
     res
       .status(201)
       .json({ message: "User signed in successfully", success: true, user });
@@ -58,19 +64,12 @@ module.exports.Login = async (req, res, next) => {
     }
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      withCredentials: true,
+      httpOnly: false,
     });
-    res.status(201).json({
-      message: "User logged in successfully",
-      success: true,
-      token,
-      user: {
-        username: user.username,
-        email: user.email,
-      },
-    });
+    res
+      .status(201)
+      .json({ message: "User logged in successfully", success: true });
     next();
   } catch (error) {
     console.error(error);
