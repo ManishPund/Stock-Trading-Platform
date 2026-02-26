@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserDataContext } from "./UserContext";
 
-const Menu = ({ userData }) => {
+const Menu = () => {
   const navigate = useNavigate();
   const [selectedMenu, setSelectedMenu] = useState();
   const [isProfileDropdownOpen, setIsProfileDropdownOp] = useState(false);
+
+  const [userData] = useContext(UserDataContext);
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, Box, Typography, Divider, Button, Stack } from "@mui/material";
 
 import PersonIcon from "@mui/icons-material/Person";
@@ -9,8 +9,11 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserDataContext } from "./UserContext";
 
-const Profile = ({ userData }) => {
+const Profile = () => {
+  const [userData] = useContext(UserDataContext);
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {

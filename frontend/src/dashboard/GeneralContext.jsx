@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 import BuyActionWindow from "./BuyActionWindow";
 
@@ -29,6 +31,7 @@ export const GeneralContextProvider = (props) => {
       value={{
         openBuyWindow: handleOpenBuyWindow,
         closeBuyWindow: handleCloseBuyWindow,
+      
       }}
     >
       {props.children}

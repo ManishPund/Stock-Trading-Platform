@@ -874,7 +874,7 @@ hr {
 .profile-dropdown {
   position: absolute;
   top: 50px;
-  left: 0;
+  right: 0px;
   width: 160px;
   background: #fff;
   border: 1px solid #e5e7eb;

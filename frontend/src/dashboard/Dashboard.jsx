@@ -12,7 +12,7 @@ import WatchList from "./WatchList";
 import { GeneralContextProvider } from "./GeneralContext";
 import Profile from "./Profile";
 
-const Dashboard = ({ userData }) => {
+const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <GeneralContextProvider>
@@ -26,7 +26,7 @@ const Dashboard = ({ userData }) => {
           <Route path="/positions" element={<Positions />} />
           <Route path="/funds" element={<Funds />} />
           <Route path="/apps" element={<Apps />} />
-          <Route path="/profile" element={<Profile userData={userData} />} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </div>
     </div>

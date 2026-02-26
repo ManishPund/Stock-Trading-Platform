@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { useContext, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 
 import TopBar from "./TopBar";
 import Dashboard from "./Dashboard";
+import UserContext, { UserDataContext } from "./UserContext";
 
 const Home = () => {
-  const navigate = useNavigate();
   const [, , removeCookie] = useCookies(["token"]);
-  const [userData, setUserData] = useState({});
+
+  const [, setUserData] = useContext(UserDataContext);
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -40,11 +40,11 @@ const Home = () => {
 
     verifyUser();
   }, [removeCookie]);
-
   return (
     <>
-      <TopBar userData={userData} />
-      <Dashboard userData={userData} />
+      <TopBar />
+      <Dashboard />
+
       <ToastContainer />
     </>
   );
