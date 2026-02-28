@@ -7,7 +7,11 @@ const Footer = () => {
         <div className="row ">
           <div className="col-12 col-lg-3">
             <div className="logo ">
-              <img src="media\images\logo.svg" alt="Logo" className="w-50" />
+              <img
+                src="media\images\logo.svg"
+                alt="Logo"
+                className="h-100"
+              />
             </div>
             <p className="py-3">
               &copy; 2010 - 2025, Zerodha Broking Ltd. <br />

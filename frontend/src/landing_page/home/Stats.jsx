@@ -2,9 +2,9 @@ import React from "react";
 
 const Stats = () => {
   return (
-    <div className="container my-5">
-      <div className="row">
-        <div className="col-5 p-5 my-4">
+    <div className="container my-2 my-lg-5">
+      <div className="row mx-auto">
+        <div className="col-12 col-lg-5 p-3 p-lg-5 my-2 my-lg-4">
           <h1 className="fs-2 mb-5">Trust with confidence</h1>
           <h2 className="fs-4">Customer-first always</h2>
           <p className="mb-4">
@@ -39,7 +39,7 @@ const Stats = () => {
             better with your money.
           </p>
         </div>
-        <div className="col-7 p-5 text-center">
+        <div className="col-12 col-lg-7 p-5 text-center">
           <img
             src="media\images\ecosystem.png"
             alt="Ecosystem Image"

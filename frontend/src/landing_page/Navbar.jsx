@@ -31,7 +31,7 @@ const Navbar = () => {
 
           {/* Menu */}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav  ms-auto mb-2 mb-lg-0 text-muted">
+            <ul className="navbar-nav  ms-auto mb-2 mb-lg-0 text-muted fw-medium">
               <li className="nav-item mx-2 px-2">
                 <NavLink className="nav-link " to="/signup" aria-current="page">
                   Signup

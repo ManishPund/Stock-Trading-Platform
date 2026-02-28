@@ -2,22 +2,23 @@ import React from "react";
 
 const Awards = () => {
   return (
-    <div className="container my-5">
-      <div className="row">
-        <div className="col-6 p-5">
+    <div className="container my-2 my-lg-5">
+      <div className="row mx-auto">
+        <div className="col-12 col-lg-6 p-3 p-lg-5">
           <img
             src="media/images/largestBroker.svg"
             alt="Largest Broker Image"
+            className="w-100"
           />
         </div>
-        <div className="col-6 p-5">
-          <h1 className="mb-3">Largest stock broker in india</h1>
+        <div className="col-12 col-lg-6 p-3 p-lg-5">
+          <h1 className="my-3">Largest stock broker in india</h1>
           <p>
             2+ million Zerodha clients contribute to over 15% of all retail
             order volumes in india daily by trading and investing in:
           </p>
-          <div className="row my-5">
-            <div className="col-6">
+          <div className="row my-lg-5">
+            <div className="col-12 col-md-6">
               <ul>
                 <li>
                   <p>Future and Options</p>
@@ -30,7 +31,7 @@ const Awards = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-md-6">
               <ul>
                 <li>
                   <p>Stocks & IPOs</p>
