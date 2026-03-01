@@ -45,6 +45,10 @@ const Login = () => {
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
+        setInputValue({
+          email: "",
+          password: "",
+        });
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
@@ -52,83 +56,87 @@ const Login = () => {
         handleError(message);
       }
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        handleError(error.response.data.message);
+      } else {
+        handleError("Server not reachable");
+      }
     }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-    });
   };
 
   return (
-    <section className="container py-4 py-md-5">
-      <div className="row justify-content-center mx-auto">
-        <h1 className="fs-4 mb-4 text-center fw-semibold">
-          Login to your account
-        </h1>
+    <>
+      <section className="container py-4 py-md-5">
+        <div className="row justify-content-center mx-auto">
+          <h1 className="fs-4 mb-4 text-center fw-semibold">
+            Login to your account
+          </h1>
 
-        <div className="col-12 col-md-8 col-lg-6">
-          <div className="card border border-1 shadow">
-            <div className="card-body p-4 p-md-5">
-              <form className="row g-3" onSubmit={handleSubmit}>
-                {/* EMAIL */}
-                <div className="col-12">
-                  <label htmlFor="email" className="form-label text-muted">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control rounded-1"
-                    id="email"
-                    name="email"
-                    value={email}
-                    placeholder="you@example.com"
-                    autoComplete="email"
-                    onChange={handleOnChange}
-                  />
-                </div>
+          <div className="col-12 col-md-8 col-lg-6">
+            <div className="card border border-1 shadow">
+              <div className="card-body p-4 p-md-5">
+                <form className="row g-3" onSubmit={handleSubmit}>
+                  {/* EMAIL */}
+                  <div className="col-12">
+                    <label htmlFor="email" className="form-label text-muted">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control rounded-1"
+                      id="email"
+                      name="email"
+                      value={email}
+                      placeholder="you@example.com"
+                      autoComplete="email"
+                      onChange={handleOnChange}
+                    />
+                  </div>
 
-                {/* PASSWORD */}
-                <div className="col-12">
-                  <label htmlFor="password" className="form-label text-muted">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control rounded-1"
-                    id="password"
-                    name="password"
-                    value={password}
-                    placeholder="••••••••"
-                    autoComplete="current-password"
-                    onChange={handleOnChange}
-                  />
-                </div>
+                  {/* PASSWORD */}
+                  <div className="col-12">
+                    <label htmlFor="password" className="form-label text-muted">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control rounded-1"
+                      id="password"
+                      name="password"
+                      value={password}
+                      placeholder="••••••••"
+                      autoComplete="current-password"
+                      onChange={handleOnChange}
+                    />
+                  </div>
 
-                {/* LOGIN BUTTON */}
-                <div className="col-12 mt-4">
-                  <button type="submit" className="btn btn-primary w-100 py-2">
-                    Login
-                  </button>
-                </div>
+                  {/* LOGIN BUTTON */}
+                  <div className="col-12 mt-4">
+                    <button
+                      type="submit"
+                      className="btn btn-primary w-100 py-2"
+                    >
+                      Login
+                    </button>
+                  </div>
 
-                {/* SIGNUP LINK */}
-                <div className="col-12 text-center mt-3">
-                  <span className="text-muted">
-                    Don’t have an account?{" "}
-                    <Link to="/signup" className="text-decoration-none">
-                      Create account
-                    </Link>
-                  </span>
-                </div>
-              </form>
-              <ToastContainer />
+                  {/* SIGNUP LINK */}
+                  <div className="col-12 text-center mt-3">
+                    <span className="text-muted">
+                      Don’t have an account?{" "}
+                      <Link to="/signup" className="text-decoration-none">
+                        Create account
+                      </Link>
+                    </span>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <ToastContainer />
+    </>
   );
 };
 
