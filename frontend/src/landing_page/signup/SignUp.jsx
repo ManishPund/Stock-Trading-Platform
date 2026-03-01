@@ -86,7 +86,7 @@ const SignUp = () => {
 
   return (
     <section className="container py-4 py-md-5">
-      <div className="row justify-content-center">
+      <div className="row mx-auto justify-content-center">
         <h1 className="fs-4 mb-4 text-center fw-semibold">
           Create your account
         </h1>
@@ -143,7 +143,7 @@ const SignUp = () => {
                   />
                 </div>
 
-                <div className="col-6">
+                <div className="col-lg-6 col-12">
                   <label htmlFor="mobileNum" className="form-label text-muted">
                     Mobile No.
                   </label>
@@ -164,7 +164,7 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                <div className="col-md-6">
+                <div className="col-lg-6 col-12">
                   <label htmlFor="username" className="form-label text-muted">
                     Username
                   </label>

@@ -2,14 +2,14 @@ import { ToastContainer, toast } from "react-toastify";
 import { useContext, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-
 import TopBar from "./TopBar";
 import Dashboard from "./Dashboard";
 import UserContext, { UserDataContext } from "./UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [, , removeCookie] = useCookies(["token"]);
-
+  const navigate = useNavigate();
   const [, setUserData] = useContext(UserDataContext);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
         }
       } catch {
         removeCookie("token");
-        window.location.href = `${import.meta.env.VITE_FRONTEND_URL}/login`;
+        navigate("/login");
       }
     };
 
